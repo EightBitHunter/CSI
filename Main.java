@@ -1,5 +1,5 @@
 //This program is an escape room! It is a text based adventure game that the player has to navigate by interacting with the puzzles in the room in the right order. There will be
-//different things that go on, but they will be documented as they come up. 
+//different things that go on, but they will be documented as they come up.
 
 import java.util.Scanner;
 import java.util.Random;
@@ -28,7 +28,7 @@ public class Main {
     static boolean entrySix;
     static boolean cubeDone;
     static boolean hasKey;
-    static boolean firstJournal;
+    static boolean firstJournal = true;
 
     public static void main(String[] args) {
         //main menu/start screen
