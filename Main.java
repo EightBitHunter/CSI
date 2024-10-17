@@ -9,7 +9,8 @@ public class Main {
     //Each will be explained when implemented
     static Scanner input = new Scanner(System.in);
     static int playerChoice;
-    //booleans are easier to make static here because we dont have to define them and they automatically get assigned the 'false' value
+    static int deathChance;
+    //booleans are easier to make static here because we don't have to define them, and they automatically get assigned the 'false' value
     static boolean electricity;
     static boolean firstTime;
     static boolean mainRoomRepeatedTime;
@@ -112,7 +113,7 @@ public class Main {
                     System.out.println("You do not have this hint unlocked yet.");
                 }
                 System.out.println("*Type in 1 for journal entry one, 2 for journal entry 2, 3, 4, or 5 respectively. Type 0 to go back to the main selection screen.*");
-                journal();//re opens the journal and the game knows they have already opened the journal before so it doesnt repeat dialogue
+                journal();//re-opens the journal and the game knows they have already opened the journal before so it doesn't repeat dialogue
                 break;
             case 2:
                 if(entryTwo){
@@ -222,7 +223,7 @@ public class Main {
                     System.out.println("*Incorrect input. Please input either 1 or 2.*");
                     dPad();//restart the dpad method so they can correct their input
             }
-        }else{//if the pad has no electricity, then the player can interact with it but it will do nothing. CHANCE TO PUT IN SECRET CODE HERE???
+        }else{//if the pad has no electricity, then the player can interact with it, but it will do nothing. CHANCE TO PUT IN SECRET CODE HERE???
             System.out.println("*You approach the directional pad on the ground. It has four options, up, right, down, and left. Type 1 to press up, type 2 to press right, type 3 to press down, type 4 to press left, and type 0 to go back to the main room.*");
             playerChoice = input.nextInt();
             if(playerChoice == 1 || playerChoice == 2 || playerChoice == 3 || playerChoice == 4){
@@ -239,7 +240,7 @@ public class Main {
     }
 
     public static void shapePedestal(){
-        if (shapeRepeatedTime){//same type of code block, if they repeat this i want different text to appear so it doesnt feel unnatural.
+        if (shapeRepeatedTime){//same type of code block, if they repeat this I want different text to appear so it doesn't feel unnatural.
             System.out.println("*You approach the shape pedestal again. Type 1 to place the triangular prism, type 2 to place the cube, type 3 to place the pentagonal prism, type 4 to place the hexagonal prism, type 5 to place the heptagonal prism, and type 0 to go back to the main room.*");
         }else{
             System.out.println("*You approach the shape pedestal. There are 5 different three dimensional shapes to choose from. Type 1 to place the triangular prism, type 2 to place the cube, type 3 to place the pentagonal prism, type 4 to place the hexagonal prism, type 5 to place the heptagonal prism, and type 0 to go back to the main room.*");
@@ -256,7 +257,7 @@ public class Main {
                 shapePedestal();
                 break;
             case 2:
-                if(cubeDone){//if the cube puzzle is already done, then I dont want the code block to repeat over again
+                if(cubeDone){//if the cube puzzle is already done, then I don't want the code block to repeat over again
                     System.out.println("You place the cube back onto the pedestal. You hear a dull click and nothing happens. You take the cube and place it back with the other shapes.");
                     shapePedestal();
                 } else {
@@ -272,7 +273,7 @@ public class Main {
                 if(pentagonalPrismDone) {//same as the cube, see if the puzzle has been done
                     System.out.println("You place the pentagonal prism back onto the pedestal. You hear a dull click and nothing happens. You take the pentagonal prism and place it back with the other shapes.");
                     shapePedestal();
-                } else if (directionalOneDone) {//make sure the directional puzzlee has been completed, otherwise it does nothing. This is an escalating boolean check to make sure all the requirements are met. Must have the previous one to get the next
+                } else if (directionalOneDone) {//make sure the directional puzzle has been completed, otherwise it does nothing. This is an escalating boolean check to make sure all the requirements are met. Must have the previous one to get the next
                     System.out.println("You place the pentagonal prism onto the pedestal. A switch activates inside the shape and the top opens up. Inside there is a note and it reads,\n\"The 7 sins are the folly of man.\nLooking down is pride on those who lied,\nLooking right is envy with wishes aplenty,\nLooking up is wrath on the bloody path,\nLooking left is sloth covered in tattered cloth,\nLooking right is greed never wanting to concede,\nLooking up is lust with desires unjust,\nAnd looking down is gluttony gnashing his teeth sullenly.\"\nThe clock chimes 8 times and the directional pad hums with electricity again.\nYou remove the pentagonal prism and place it back with the other shapes.");
                     System.out.println("You record this down as entry 4 in your journal.");
                     electricity = true;
@@ -330,7 +331,7 @@ public class Main {
                     hasKey = true;
                     System.out.println("You take a step back and have the key in your hand now.");
                     mainRoom();
-                }else{//if sequence is not right, then it doens't do anything
+                }else{//if sequence is not right, then it doesn't do anything
                     System.out.println("The lock stays shut and doesn't budge. You take a step back and contemplate what the numbers could be.");
                     lock();
                 }
@@ -347,7 +348,6 @@ public class Main {
 
     public static void tryDoor(){
         //create variables and objects only seen in the method
-        int deathChance = 0;
         Random random = new Random();
         if(hasKey){
             System.out.println("You used the key you picked up from the safe to unlock the door. You have escaped!!! Congrats on winning the game.");
@@ -384,7 +384,7 @@ public class Main {
                     """);
             System.exit(0);//exit the game after they win
         } else{
-            if(deathChance > 50){//if they jiggle the door handle and their death chance is higher than 50, then its an instant death. Guarenteed to not kill the first time times, but it increases every time after
+            if(deathChance > 50){//if they jiggle the door handle and their death chance is higher than 50, then it's an instant death. Guaranteed to not kill the first time times, but it increases every time after
                 System.out.println("You jiggled the door handle and the room began to be filled with water. You try to find an escape but it is too late.\nGAME OVER.");
                 //art is pulled from https://ascii.co.uk/art/skulls
                 System.out.println("""
@@ -416,11 +416,10 @@ public class Main {
                         """);
                 System.exit(0);
             }else{
-                deathChance += deathChance + random.nextInt(25);//increase the death chance so that living is not guarenteed.
+                deathChance += deathChance + random.nextInt(25);//increase the death chance so that living is not guaranteed.
                 System.out.println("You jiggled the door handle, but it jiggles and does nothing. You feel a lingering sense of dread after your hand leaves the handle, almost like you got one step closer to death.");
             }
         }
-        mainRoom();//Send them back to the main room options if they dont die
+        mainRoom();//Send them back to the main room options if they don't die
     }
 }
-
